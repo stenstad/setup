@@ -1,0 +1,19 @@
+[user]
+	name = Audun Ytterdal
+	email = ay@vg.no
+[color]
+        ui=auto
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+	stat = true
+[difftool]
+	prompt = false
+[push]
+	default = tracking
+[alias]
+	info = !$HOME/bin/git-info
+	pager = !$HOME/bin/git-pager
+[branch]
+	autosetupmerge = true

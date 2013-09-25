@@ -1,0 +1,5 @@
+varnish = hmg9-varnish-01.int.vgnett.no hmg9-varnish-02.int.vgnett.no hmg9-varnish-03.int.vgnett.no m323-varnish-01.int.vgnett.no m323-varnish-02.int.vgnett.no m323-varnish-03.int.vgnett.no
+direkte = livestudio-web-01.int.vgnett.no livestudio-web-02.int.vgnett.no m323-varnish-03.int.vgnett.no livestudio-adminmongo-01.int.vgnett.no livestudio-mongo-01.int.vgnett.no
+clusters = varnish direkte
+action_key = \017
+extra_cluster_file = $HOME/.cssh-clusters
