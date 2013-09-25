@@ -12,6 +12,9 @@ au BufRead,BufNewFile Capfile set filetype=ruby
 au BufRead,BufNewFile profile set filetype=sh
 au BufRead,BufNewFile bigip.conf set filetype=tcl
 
+
+"set ofu=syntaxcomplete#Complete
+
 " sudo rewrite
 ca w!! w !sudo tee >/dev/null "%"
 
