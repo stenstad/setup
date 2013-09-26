@@ -52,9 +52,6 @@
 [submodule "vim/bundle/neosnippet.vim"]
 	path = vim/bundle/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
-[submodule "vim-nodejs-complete"]
-	path = vim-nodejs-complete
-	url = https://github.com/myhere/vim-nodejs-complete.git
 [submodule "vim/bundle/perlomni.vim"]
 	path = vim/bundle/perlomni.vim
 	url = https://github.com/c9s/perlomni.vim.git
