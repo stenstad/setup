@@ -139,11 +139,11 @@ endfunction
 map <leader>p :set invpaste<CR>
 
 " Configure solarized to 256 color terminal with dark background
-set background=dark
+"set background=dark
 set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-colorscheme solarized
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
+colorscheme railscast
 
 set nocompatible
 set backspace=eol,start,indent
@@ -188,9 +188,9 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
+  "return neocomplcache#smart_close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -213,7 +213,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "let g:neocomplcache_enable_insert_char_pre = 1
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
