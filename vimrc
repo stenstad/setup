@@ -138,11 +138,11 @@ endfunction
 " Toggle paste mode
 map <leader>p :set invpaste<CR>
 
-" Configure solarized to 256 color terminal with dark background
+" Configure solarized to 256 color terminal with dark backgoun
 "set background=dark
 set t_Co=256
-"let g:solarized_termcolors=256
-"let g:solarized_contrast="high"
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
 colorscheme railscast
 
 set nocompatible
@@ -213,7 +213,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "let g:neocomplcache_enable_insert_char_pre = 1
 
 " AutoComplPop like behavior.
-let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
