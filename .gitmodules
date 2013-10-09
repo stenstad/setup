@@ -76,3 +76,6 @@
 [submodule "tools/liquidprompt"]
 	path = tools/liquidprompt
 	url = https://github.com/nojhan/liquidprompt.git
+[submodule "vim/bundle/bind.vim"]
+	path = vim/bundle/bind.vim
+	url = https://github.com/seveas/bind.vim
