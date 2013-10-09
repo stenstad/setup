@@ -1,8 +1,11 @@
 #!/bin/bash
- 
+
 REL=$(pwd |perl -p -e "s|$HOME/||g")
 PWD=$(pwd)
 
+git pull
+git submodule init
+git submodule update
 ln -si $REL/profile $HOME/.bash_profile
 ln -si $REL/vimrc $HOME/.vimrc
 rm -ri $HOME/.vim
