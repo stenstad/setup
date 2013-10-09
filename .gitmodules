@@ -72,7 +72,7 @@
 	url = https://github.com/tpope/vim-markdown.git
 [submodule "tools/statpipe"]
 	path = tools/statpipe
-	url = http://github.com/auduny/statpipe
+	url = https://github.com/auduny/statpipe
 [submodule "tools/liquidprompt"]
 	path = tools/liquidprompt
 	url = https://github.com/nojhan/liquidprompt.git
