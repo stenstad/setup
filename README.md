@@ -4,6 +4,6 @@ setup
 
 dotfiles and such
 
-git clone git@github.com:auduny/setup.git
+git clone git@github.com:stenstad/setup.git
 cd setup
 ./update.sh
