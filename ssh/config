@@ -1,10 +1,3 @@
 Host *
-  ForwardAgent yes
-  HashKnownHosts no
-  TCPKeepAlive no 
-  ServerAliveInterval 15 
-
-Host home
-  hostname home.ytterdal.net
-  port 1022
-
+	ServerAliveInterval 30
+	ServerAliveCountMax 4
