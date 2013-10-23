@@ -79,7 +79,7 @@
 [submodule "vim/bundle/bind.vim"]
 	path = vim/bundle/bind.vim
 	url = https://github.com/seveas/bind.vim
-[submodule] "vim/bundle/vim-salt"]
+[submodule "vim/bundle/vim-salt"]
     path = vim/bundle/vim-salt
     url = https://github.com/saltstack/salt-vim.git
 
