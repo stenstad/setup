@@ -1,3 +1,23 @@
 Host *
-	ServerAliveInterval 30
-	ServerAliveCountMax 4
+  ServerAliveInterval 30
+  ServerAliveCountMax 4
+Host bgw1.no-osl1.zetta.io
+  ControlMaster auto
+  ControlPath ~/.ssh/control-%h-%p-%r
+  ControlPersist 60
+  DynamicForward 9998
+  ForwardAgent yes
+
+Host salt.zetta.io
+  ControlMaster auto
+  ControlPath ~/.ssh/control-%h-%p-%r
+  ControlPersist 60
+  ForwardAgent yes
+
+Host adm1.zetta.io
+  ControlMaster auto
+  ControlPath ~/.ssh/control-%h-%p-%r
+  ControlPersist 60
+  DynamicForward 9999
+  ForwardAgent yes
+
