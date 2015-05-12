@@ -86,3 +86,9 @@
 [submodule "tools/statpipe"]
 	path = tools/statpipe
 	url = https://github.com/auduny/statpipe
+[submodule "tools/libphutil"]
+	path = tools/libphutil
+	url = https://github.com/phacility/libphutil.git
+[submodule "tools/arcanist"]
+	path = tools/arcanist
+	url = https://github.com/phacility/arcanist.git
