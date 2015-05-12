@@ -70,12 +70,6 @@
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "tools/statpipe"]
-	path = tools/statpipe
-	url = https://github.com/auduny/statpipe
-[submodule "tools/liquidprompt"]
-	path = tools/liquidprompt
-	url = https://github.com/nojhan/liquidprompt.git
 [submodule "vim/bundle/bind.vim"]
 	path = vim/bundle/bind.vim
 	url = https://github.com/seveas/bind.vim
@@ -83,3 +77,12 @@
     path = vim/bundle/vim-salt
     url = https://github.com/saltstack/salt-vim.git
 
+[submodule "vim/bundle/neobundle.vim"]
+	path = vim/bundle/neobundle.vim
+	url = https://raw.githubusercontent.com/Shougo/neobundle.vim
+[submodule "tools/liquidprompt"]
+	path = tools/liquidprompt
+	url = https://github.com/nojhan/liquidprompt.git
+[submodule "tools/statpipe"]
+	path = tools/statpipe
+	url = https://github.com/auduny/statpipe

@@ -1,94 +1,23 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
-" Enable filetype detection
-filetype on
-" Load plugin files for each filetype (.vim/after/ftplugin/*.vim)
-filetype plugin on
-" Load indent file for each filetype (.vim/after/indent/*.vim)
-filetype plugin indent on
+if has('vim_starting')
+  set nocompatible               " Be iMproved
 
-" Filetype overrides
-au BufRead,BufNewFile Capfile set filetype=ruby
-au BufRead,BufNewFile profile set filetype=sh
-au BufRead,BufNewFile bigip.conf set filetype=tcl
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-
-"set ofu=syntaxcomplete#Complete
+set backspace=eol,start,indent
 
 " sudo rewrite
 ca w!! w !sudo tee >/dev/null "%"
 
-" map CTRL-E to end-of-line (insert mode)
-imap <C-e> <esc>$i<right>
-" map CTRL-A to beginning-of-line (insert mode)
-imap <C-a> <esc>1i
-
-" Quick visual mode
-imap <C-v> <esc>v
-
-let g:EasyMotion_leader_key = '<Leader>'
-
-
-
-syntax enable
-
-" Load pathogen
-call pathogen#infect()
-call pathogen#helptags()
-
-" Remove all unwanted whitespaces on save
-autocmd BufWritePre * :%s/\r\+$//e " Windows newlines
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Rebind <leader>
-let mapleader = ","
-let g:EasyMotion_leader_key = '<Leader>'
-nmap ; :CtrlPBuffer<CR>
-
-" Turn on line numbers
-" set relativenumber
-
-" Indent the next line similiar to current line
-set autoindent
-" Use same indentation characters as current line
-set copyindent
-" Use spaces instead of tabs for indentation
-set expandtab
-" Use 4 spaces for indentation
-set shiftwidth=4
-" Round all indentations to multiple of shiftwidth
-set shiftround
-" Set tabs to be equivalent to 4 spaces (fixes retab)
-set tabstop=4
-
-" Long lines handling
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-set colorcolumn=80,100
-
-" Display ruler with current possition
-set ruler
-
 " Display statusline
 set laststatus=2
-
 " Set how many lines that should be displayed above/under cursor
 set scrolloff=7
 
-" Show hidden unwanted characters
-set list
-set listchars=tab:►\ ,trail:·,nbsp:□
-
-" Hightlight paired brackets
-set showmatch
-
-" Highlight all matches for a search
-set hlsearch
-" Search as you type
-set incsearch
-" Replace all occurences on each line
-set gdefault
 " Only search case sensitive if a letter is uppercase
 set ignorecase
 set smartcase
@@ -97,128 +26,153 @@ set smartcase
 set history=1000
 set undolevels=1000
 
-" Create undo files
-"set undofile
-
 " Don't create backup or swap files
 set nobackup
 set noswapfile
 
-" Enable wildmenu (inline file explorer in command line)
-set wildmenu
-set wildmode=list:longest,full
+" reopening a file
+if has("autocmd")
+   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+   \| exe "normal! g'\"" | endif
+endif
 
-" Update window title with path to open file
-set title
+"set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
-" Adjust bells to avoid sound, visual only
-set visualbell
-set noerrorbells
+" Show " in json
+let g:vim_json_syntax_conceal = 0
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS shiftwidth=2 tabstop=2
+autocmd FileType json setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd Filetype make setlocal tabstop=8 noexpandtab
+autocmd BufRead,BufNewFile Capfile setlocal filetype=ruby
+autocmd BufRead,BufNewFile profile setlocal filetype=sh
+autocmd BufRead,BufNewFile bigip.conf setlocal filetype=tcl
+autocmd BufRead,BufNewFile /var/named/zones/* setlocal filetype=bindzone
+autocmd BufRead,BufNewFile *.ejs setlocal filetype=html
 
-" Map shift+h/shift+l for navigate between tabs
-map <S-h> gT
-map <S-l> gt
 
-" Allow opening of more files in tabs with -p
-set tabpagemax=50
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Replace a word with last yanked text
-nmap <leader>r "_diwP
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'smerrill/vcl-vim-plugin'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'jamessan/vim-gnupg'
+NeoBundle 'StanAngeloff/php.vim.git'
+NeoBundle 'seveas/bind.vim'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'ahayman/vim-nodejs-complete'
+NeoBundle 'elzr/vim-json.git'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'vim-scripts/IndentConsistencyCop'
+NeoBundle 'vim-scripts/ingo-library'
+NeoBundle 'aperezdc/vim-template'
+NeoBundle 'othree/html5.vim'
 
-" Toggle line numbers on/off
-map <leader>l :call ToggleLineNumberingStyle()<CR>
-function! ToggleLineNumberingStyle()
-    if &number
-        set relativenumber
-    else
-        set number
-    endif
-endfunction
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
 
-" Toggle paste mode
-map <leader>p :set invpaste<CR>
+call neobundle#end()
 
-" Configure solarized to 256 color terminal with dark backgoun
-"set background=dark
-set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-colorscheme railscast
+" Required:
+filetype plugin indent on
 
-set nocompatible
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-let g:neocomplcache_enable_at_startup = 1
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
         \ }
 
 " Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  "return neocomplcache#smart_close_popup() . "\<CR>"
+  return neocomplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
 " Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
+"let g:neocomplete#enable_cursor_hold_i = 1
 " Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
+"let g:neocomplete#enable_insert_char_pre = 1
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplete#enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
@@ -229,18 +183,18 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" Neosnippets
+"snippets
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -260,10 +214,9 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
 
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-
+set background=dark
+colorscheme Tomorrow-Night
+syntax enable
+hi Normal ctermbg=none
+highlight NonText ctermbg=none

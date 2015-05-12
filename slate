@@ -1,0 +1,89 @@
+# ======================================
+# Slate config by Filip Johansson
+# ======================================
+
+
+# Configs
+# ============
+config defaultToCurrentScreen true
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+config gridBackgroundColor "0;0;0;0"
+config gridRoundedCornerSize 0
+config gridCellBackgroundColor "0;0;0;.5"
+config gridCellSelectedColor "0;0;0;.8"
+config gridCellRoundedCornerSize 0
+
+
+# Aliases
+# ============
+# Define the hyper key
+alias hyper ctrl;shift;alt;cmd
+
+# Define screen sizes
+alias screen-mbp-retina 2880x1800
+alias screen-cd-30 2560x1600
+
+# Default window sizes
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias center move screenOriginX+screenSizeX/4.5;screenOriginY 3*screenSizeX/5;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+# Layouts
+# ============
+
+# 2 monitor layout
+layout 2monitors 'Google Chrome':REPEAT_LAST,TITLE_ORDER_REGEX=^Developer\sTools\s-\s.+$ ${lefthalf} ${screen-cd-30} | ${righthalf} ${screen-cd-30} | ${center} ${screen-cd-30}
+layout 2monitors 'Sublime Text' ${lefthalf} ${screen-cd-30}
+
+# 1 monitor layout
+
+# Default layouts
+
+# bind g:${hyper} layout 2monitors
+
+# Key bindings
+# ============
+
+# Window positions
+bind c:${hyper} chain ${righthalf} | throw 1 resize
+bind x:${hyper} chain ${lefthalf} | throw 0 resize
+bind space:${hyper} chain ${center} | ${full}
+
+# Undo
+bind z:${hyper} undo
+
+# Hint
+bind tab:${hyper} hint ASDFGZXCVB
+
+# Application switching
+bind 1:${hyper} focus 'iTerm'
+bind 2:${hyper} focus 'Google Chrome'
+bind 3:${hyper} focus 'Skype'
+bind 4:${hyper} focus 'Messages'
+
+bind q:${hyper} focus 'Sublime Text'
+bind w:${hyper} focus 'Google Chrome Canary'
+bind e:${hyper} focus 'SourceTree'
+
+# Focus windows
+#bind left:${hyper} focus left
+#bind right:${hyper} focus right
+
+# Show grid
+bind g:${hyper} grid padding:10 ${screen-cd-30}:6,4 ${screen-mbp-retina}:6,4
+
+# Hide application
+bind esc:${hyper} hide 'current'
+
+# Relaunch Slate
+bind return:${hyper} relaunch
+
+# Application switcher
+# bind tab:cmd switch

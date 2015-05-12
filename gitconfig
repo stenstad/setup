@@ -2,9 +2,9 @@
 	name = Dag Stenstad
 	email = dag@stenstad.net
 [color]
-        ui=auto
+    ui=auto
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [merge]
 	tool = vimdiff
 	stat = true
@@ -15,5 +15,6 @@
 [alias]
 	info = !$HOME/bin/git-info
 	pager = !$HOME/bin/git-pager
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [branch]
 	autosetupmerge = true

@@ -1,9 +1,3 @@
-
-if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
-fi
-
-
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
@@ -27,7 +21,6 @@ if [ -f $HOME/setup/tools/liquidprompt/liquidprompt ]; then
 fi
 
 export PATH=/opt/chef/bin:/opt/local/bin:/opt/local/sbin:$PATH:~/src/arcanist/bin/:$HOME/bin:$HOME/setup/bin
-export PS1="\[\e[1;33m\]\u\[\e[1;0m\]@\[\e[1;32m\]\h\[\e[1;0m\]:\w$ "
 export EDITOR=vim
 export LANG=en_US.UTF-8
-export RAZOR_API=http://razor.zetta.io:8080/api
+export TERM=screen-256color

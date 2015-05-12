@@ -1,4 +1,5 @@
 Host *
+<<<<<<< HEAD
   ServerAliveInterval 30
   ServerAliveCountMax 4
 Host bgw1.no-osl1.zetta.io
@@ -21,3 +22,13 @@ Host adm1.zetta.io
   DynamicForward 9999
   ForwardAgent yes
 
+=======
+  ForwardAgent yes
+  HashKnownHosts no
+  TCPKeepAlive no
+  ServerAliveInterval 15
+
+Host home
+  hostname home.ytterdal.net
+  port 1022
+>>>>>>> auduny/master

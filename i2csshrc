@@ -8,3 +8,11 @@ clusters:
       - m323-varnish-02.int.vgnett.no
       - hmg9-varnish-03.int.vgnett.no
       - m323-varnish-03.int.vgnett.no
+  vm:
+    hosts:
+      - zetta1.ytterdal.net
+      - zetta3.ytterdal.net
+      - amsterdam.ytterdal.net
+      - audun.ytterdal.net
+      - oldirc.vgnett.no
+
