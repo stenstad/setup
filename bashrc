@@ -119,4 +119,5 @@ export GOPATH=/home/baffle/Documents/Source/go
 export PATH=$PATH:$GOPATH/bin
 # Arcanist
 export PATH=$PATH:$HOME/setup/tools/arcanist/bin
+# Term
 export TERM=screen-256color
