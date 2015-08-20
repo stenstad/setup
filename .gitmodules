@@ -92,3 +92,6 @@
 [submodule "tools/arcanist"]
 	path = tools/arcanist
 	url = https://github.com/phacility/arcanist.git
+[submodule "vim/bundle/salt-vim"]
+	path = vim/bundle/salt-vim
+	url = https://github.com/saltstack/salt-vim.git
