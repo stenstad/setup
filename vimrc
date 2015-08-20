@@ -96,6 +96,7 @@ NeoBundle 'vim-scripts/IndentConsistencyCop'
 NeoBundle 'vim-scripts/ingo-library'
 NeoBundle 'aperezdc/vim-template'
 NeoBundle 'othree/html5.vim'
+NeoBundle 'saltstack/salt-vim'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
